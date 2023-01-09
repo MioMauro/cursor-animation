@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Cursor Animation</title>
+</head>
+<body>
+    
+
+    <div class="cursor">
+        <div class="click-animation">
+            <div class="shape circle big"></div>
+            <div class="shape circle small"></div>
+            <div class="shape triangle yellow"></div>
+            <div class="shape triangle green"></div>
+            <div class="shape disc"></div>
+        </div>
+    </div>
+
+    <section class="home">
+        <h1>Cursor click animation</h1>
+        <p>Try it</p><br><br>
+        <div>
+            <a href="https://www.youtube.com/watch?v=JojKhwOpT9w" target="_blank" rel="noopener noreferrer">Tutorial HERE</a>
+        </div>
+    </section>
+
+    <script>
+        const cursorAnimation = document.querySelector(".cursor")
+        const cursor = document.querySelectorAll(".cursor")
+    
+        document.addEventListener("click", (e) => {
+            let x = e.clientX
+            let y = e.clientY
+
+            cursorAnimation.style.top = y + "px"
+            cursorAnimation.style.left = x + "px"
+
+            cursor.forEach((cursor) => {
+                cursor.classList.add("active")
+
+                function removeCursorActive(){
+                    cursor.classList.remove("active")
+                }
+                setTimeout(removeCursorActive, 1000)
+            })
+
+            let cursorClone = cursorAnimation.cloneNode(true)
+            document.querySelector("body").appendChild(cursorClone)
+
+            setTimeout(() => {
+                cursorClone.remove()
+            }, 1000)
+        })
+    
+    </script>
+</body>
+</html>
+
